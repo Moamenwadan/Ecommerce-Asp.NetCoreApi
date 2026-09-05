@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Ecommerce.APIs/Ecommerce.APIs.csproj" />
+  <Project Path="Ecommerce.Core/Ecommerce.Core.csproj" />
+  <Project Path="Ecommerce.Repository/Ecommerce.Repository.csproj" />
+  <Project Path="Ecommerce.Service/Ecommerce.Service.csproj" />
+</Solution>
