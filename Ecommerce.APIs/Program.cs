@@ -1,4 +1,5 @@
 
+using Ecommerce.Repository.Data;
 using Ecommerce.Repository.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +30,7 @@ namespace Ecommerce.APIs
             try
             {
             await Context.Database.MigrateAsync();
+            await StoreDbContextSeed.SeedAsync(Context);
             }
             catch (Exception ex) {
                 LoggerFactory.CreateLogger<Program>().LogError(ex, "There are Problem During Apply Migration");

@@ -1,0 +1,6 @@
+[
+  { "Name": "Italian", "CategoryId": 1 },
+  { "Name": "Mexican", "CategoryId": 1 },
+  { "Name": "Indian",  "CategoryId": 2 },
+  { "Name": "Chinese", "CategoryId": 2 }
+]
