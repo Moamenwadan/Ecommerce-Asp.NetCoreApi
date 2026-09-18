@@ -1,4 +1,5 @@
-﻿using Ecommerce.Core.Repositories.Contruct;
+﻿using Ecommerce.Core.Entities;
+using Ecommerce.Core.Repositories.Contruct;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,6 @@ namespace Ecommerce.Core
         // function for SaveChanges
         Task<int> SaveChanges();
         // function For Create new Intance From Repositories if  I Need
-        IGenericRepository<TEntity,TKey>  Repository<TEntity, TKey>();
+        IGenericRepository<TEntity,TKey>  Repository<TEntity, TKey>() where TEntity :BaseEntity<TKey> ;
     }
 }

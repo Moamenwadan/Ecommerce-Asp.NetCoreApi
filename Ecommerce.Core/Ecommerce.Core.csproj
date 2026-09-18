@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Services.Contruct\Brands\" />
+    <Folder Include="Services.Contruct\Categories\" />
+    <Folder Include="Services.Contruct\Products\" />
+    <Folder Include="Services.Contruct\ProductTypes\" />
     <Folder Include="Services.Contruct\" />
   </ItemGroup>
 
