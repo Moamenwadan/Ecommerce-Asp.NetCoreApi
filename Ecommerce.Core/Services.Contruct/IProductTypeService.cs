@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ecommerce.Core.Services.Contruct
 {
-    public interface IProductType
+    public interface IProductTypeService
     {
         Task<IEnumerable<ProductTypeDto>> GetAllProductTypeAsync();
         Task<ProductTypeDto> GetProductTypeById(int id);

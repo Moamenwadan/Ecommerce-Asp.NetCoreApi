@@ -1,11 +1,11 @@
-﻿using Ecommerce.Core.DTOS;
+﻿using Ecommerce.Core.DTOS.CategoryDTOS;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Ecommerce.Core.Services.Contruct
 {
-    public interface ICategory
+    public interface ICategoryService
     {
        Task<IEnumerable<CategoryDto>> GetAllCategoryAsync();
 

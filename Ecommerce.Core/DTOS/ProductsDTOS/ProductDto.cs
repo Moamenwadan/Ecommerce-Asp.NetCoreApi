@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Core.DTOS
+namespace Ecommerce.Core.DTOS.ProductsDTOS
 {
     public class ProductDto
     {

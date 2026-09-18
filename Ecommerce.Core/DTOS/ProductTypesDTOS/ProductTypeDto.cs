@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Ecommerce.Core.DTOS
+namespace Ecommerce.Core.DTOS.ProductTypesDTOS
 {
     public class ProductTypeDto
     {

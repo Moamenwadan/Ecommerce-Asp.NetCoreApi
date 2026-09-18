@@ -10,11 +10,4 @@
     <ProjectReference Include="..\Ecommerce.Repository\Ecommerce.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Categories\" />
-    <Folder Include="Services\Brands\" />
-    <Folder Include="Services\Products\" />
-    <Folder Include="Services\ProductTypes\" />
-  </ItemGroup>
-
 </Project>

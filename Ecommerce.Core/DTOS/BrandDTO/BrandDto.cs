@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Ecommerce.Core.DTOS
+namespace Ecommerce.Core.DTOS.BrandDTO
 {
-    public class CategoryDto
+    public class BrandDto
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
-        public ICollection<ProductTypeSummaryDto> ProductTypes { get; set; } = new List<ProductTypeSummaryDto>();
+        public ICollection<ProductSummaryDto> Products { get; set; }=new List<ProductSummaryDto>();
+
     }
 }
