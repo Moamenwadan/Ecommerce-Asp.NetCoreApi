@@ -16,7 +16,7 @@ namespace Ecommerce.Service.Services.Brands
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _Mapper;
 
-        public BrandService(UnitOfWork unitOfWork, IMapper mapper)
+        public BrandService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _Mapper = mapper;

@@ -1,4 +1,4 @@
-﻿using Ecommerce.Core.DTOS;
+﻿using Ecommerce.Core.DTOS.ProductTypesDTOS;
 using System;
 using System.Collections.Generic;
 using System.Text;

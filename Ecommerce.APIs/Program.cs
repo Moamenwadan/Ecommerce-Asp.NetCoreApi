@@ -1,6 +1,14 @@
 
+using Ecommerce.Core;
+using Ecommerce.Core.Mapping;
+using Ecommerce.Core.Services.Contruct;
+using Ecommerce.Repository;
 using Ecommerce.Repository.Data;
 using Ecommerce.Repository.Data.Contexts;
+using Ecommerce.Service.Services.Brands;
+using Ecommerce.Service.Services.Categories;
+using Ecommerce.Service.Services.Products;
+using Ecommerce.Service.Services.ProductTypes;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.APIs
@@ -22,7 +30,12 @@ namespace Ecommerce.APIs
             builder.Services.AddDbContext<EcommerceDbContext>
              (option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
             );
-
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
+            builder.Services.AddScoped<IBrandService, BrandService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
             var app = builder.Build();
             var scope = app.Services.CreateScope();
             var Context = scope.ServiceProvider.GetRequiredService<EcommerceDbContext>();
