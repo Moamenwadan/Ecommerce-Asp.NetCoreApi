@@ -68,7 +68,7 @@ namespace Ecommerce.Repository.Repositories
             }
             else if (typeof(TEntity) == typeof(Brand))
             {
-                return (IEnumerable<TEntity>)await _context.Brands
+                return await _context.Brands
                     .Include(b => b.Products)
                     .FirstOrDefaultAsync(b => b.Id.Equals(id)) as TEntity;
             }

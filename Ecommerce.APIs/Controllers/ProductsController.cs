@@ -17,6 +17,7 @@ namespace Ecommerce.APIs.Controllers
         public ProductsController(IProductService productService) {
             _productService= productService;
         }
+        [HttpGet]
         public async Task<IActionResult> GetAll() {
      var products = await  _productService.GetAllProductAsync();
             if (products == null || !products.Any())

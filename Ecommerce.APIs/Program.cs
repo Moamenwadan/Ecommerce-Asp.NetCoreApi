@@ -22,10 +22,16 @@ namespace Ecommerce.APIs
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-            builder.Services.AddOpenApi();
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.CustomSchemaIds(type => type.FullName);
+            });
+            //   builder.Services.AddSwaggerGen();
+            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+            //builder.Services.AddOpenApi();
+            //builder.Services.AddEndpointsApiExplorer();
+            //builder.Services.AddSwaggerGen();
 
             builder.Services.AddDbContext<EcommerceDbContext>
              (option => option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -52,7 +58,6 @@ namespace Ecommerce.APIs
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
-                app.MapOpenApi();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }

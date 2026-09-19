@@ -14,6 +14,7 @@ namespace Ecommerce.APIs.Controllers
         {
          _productype = productype;   
         }
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var types = await _productype.GetAllProductTypeAsync();
