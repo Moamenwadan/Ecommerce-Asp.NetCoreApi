@@ -17,6 +17,7 @@ namespace Ecommerce.APIs.Controllers
         public ProductsController(IProductService productService) {
             _productService= productService;
         }
+  
         [HttpGet]
         public async Task<IActionResult> GetAll() {
      var products = await  _productService.GetAllProductAsync();
@@ -28,15 +29,42 @@ namespace Ecommerce.APIs.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            if(id <=0 || id == null)
-             return BadRequest("Invalid product .");
-            
+            if (id <= 0 || id == null)
+                return BadRequest("Invalid product .");
+
             var product = await _productService.GetProductById(id);
-            
+
             if (product == null)
-            return NotFound("this Product doesn't exist");
+                return NotFound("this Product doesn't exist");
 
             return Ok();// 200 OK
         }
+        // -------------------------Spec----------------------------
+
+        [HttpGet("All")]
+        public async Task<IActionResult> GetAllProductSpec()
+        {
+            var products = await _productService.GetAllProductSpec();
+            if (products == null || !products.Any())
+                return NotFound("No products found.");//404 NotFound
+            return Ok(products);// 200 OK
+        }
+
+
+        [HttpGet("Spec/{id}")]
+        public async Task<IActionResult> GetByIdSpec(int id)
+        {
+            if (id <= 0 || id == null)
+                return BadRequest("Invalid product .");
+
+            var product = await _productService.GetByIdSpec(id);
+
+            if (product == null)
+                return NotFound("this Product doesn't exist");
+
+            return Ok(product);// 200 OK
+        }
+
+
     }
 }

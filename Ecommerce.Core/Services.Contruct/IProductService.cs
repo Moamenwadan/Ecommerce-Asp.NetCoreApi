@@ -10,6 +10,7 @@ namespace Ecommerce.Core.Services.Contruct
         Task<IEnumerable<ProductDto>> GetAllProductAsync();
         Task<ProductDto> GetProductById(int id);
 
-
+        Task<IEnumerable<ProductDto>> GetAllProductSpec();
+        Task<ProductDto> GetByIdSpec(int id);
     }
 }

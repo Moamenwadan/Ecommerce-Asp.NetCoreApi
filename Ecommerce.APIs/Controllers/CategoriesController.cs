@@ -34,5 +34,18 @@ namespace Ecommerce.APIs.Controllers
             
             return Ok(Category);
         }
+
+        [HttpGet("{id}/Types")]
+        public async Task<IActionResult> GetTypesByCategory(int id)
+        {
+            if (id <= 0) return BadRequest("Invalid Category");
+
+            var Types = await _categoryService.GetTypesByCategoryIdAsync(id);
+
+            if (Types == null || !Types.Any())
+                return NotFound("This Category has no Types yet");
+
+            return Ok(Types);
+        }
     }
 }
