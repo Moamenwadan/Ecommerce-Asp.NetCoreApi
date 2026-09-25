@@ -1,4 +1,5 @@
 ﻿using Ecommerce.Core.Entities;
+using Ecommerce.Core.Specification;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,7 +18,11 @@ namespace Ecommerce.Core.Repositories.Contruct
         void DeleteByEntity(TEntity TEntity);
 
         void DeleteById(TKey id);
- 
+
+
+        Task<IEnumerable<TEntity>> GetAllWithSpec(ISpecification<TEntity,TKey> spec);
+        Task<TEntity> GetWithSpec(ISpecification<TEntity, TKey> spec);
+
 
 
 

@@ -1,5 +1,7 @@
-﻿using Ecommerce.Core.Entities;
+﻿using Ecommerce.Core;
+using Ecommerce.Core.Entities;
 using Ecommerce.Core.Repositories.Contruct;
+using Ecommerce.Core.Specification;
 using Ecommerce.Repository.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -124,6 +126,17 @@ namespace Ecommerce.Repository.Repositories
             {
                 _context.Set<TEntity>().Remove(entity);
             }
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllWithSpec(ISpecification<TEntity, TKey> spec)
+        {
+return await SpecificationEvaluator<TEntity,TKey>.GetQuery(_context.Set<TEntity>(),spec).ToListAsync();
+                
+                }
+
+        public async Task<TEntity> GetWithSpec(ISpecification<TEntity, TKey> spec)
+        {
+            return await SpecificationEvaluator<TEntity, TKey>.GetQuery(_context.Set<TEntity>(), spec).FirstOrDefaultAsync();
         }
     }
 }
