@@ -19,12 +19,7 @@ namespace Ecommerce.Core.Repositories.Contruct
 
         void DeleteById(TKey id);
 
-
         Task<IEnumerable<TEntity>> GetAllWithSpec(ISpecification<TEntity,TKey> spec);
         Task<TEntity> GetWithSpec(ISpecification<TEntity, TKey> spec);
-
-
-
-
     }
 }

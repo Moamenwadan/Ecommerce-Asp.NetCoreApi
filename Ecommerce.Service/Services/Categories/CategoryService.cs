@@ -39,7 +39,7 @@ namespace Ecommerce.Service.Services.Categories
             return categorydto;
         }
 
-        // the one you actually need: Types belonging to one Category
+        //  Types belonging to one Category
         public async Task<IEnumerable<ProductTypeDto>> GetTypesByCategoryIdAsync(int categoryId)
         {
             var spec = new CategorySpecification(c => c.Id == categoryId);

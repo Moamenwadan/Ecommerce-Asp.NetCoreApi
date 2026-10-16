@@ -18,6 +18,18 @@ namespace Ecommerce.Core
             foreach (var i in spec.Includes) {
                 InputQury = InputQury.Include(i);
             }
+            if (spec.OrderBy is not null)
+                InputQury = InputQury.OrderBy(spec.OrderBy);
+            else if (spec.OrderByDescending is not null)
+                InputQury = InputQury.OrderByDescending(spec.OrderByDescending);
+
+            if (spec.IsEnablePagination)
+            {
+            InputQury = InputQury.Skip(spec.Skip).Take(spec.Take);
+            }
+
+
+
             return InputQury;
         }
     }

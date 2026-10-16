@@ -41,7 +41,7 @@ namespace Ecommerce.APIs
             builder.Services.AddScoped<IBrandService, BrandService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile()));
+            builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile(builder.Configuration)));
             var app = builder.Build();
             var scope = app.Services.CreateScope();
             var Context = scope.ServiceProvider.GetRequiredService<EcommerceDbContext>();
@@ -69,6 +69,7 @@ namespace Ecommerce.APIs
 
             app.MapControllers();
 
+            app.UseStaticFiles();
             app.Run();
         }
     }

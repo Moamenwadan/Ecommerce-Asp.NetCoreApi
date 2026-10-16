@@ -37,10 +37,10 @@ namespace Ecommerce.Service.Services.Products
         }
         // ----------------Specification-------------------
  
-        public async Task<IEnumerable<ProductDto>> GetAllProductSpec()
+        public async Task<IEnumerable<ProductDto>> GetAllProductSpec(string? sort, int? brandId, int? typeId, int PageIndex ,int PageSize)
         {
   
-            var spec = new ProductSpeicfication();
+            var spec = new ProductSpeicfication(sort,brandId,typeId, PageIndex, PageSize);
             var products = await _unitOfWork.Repository<Product, int>().GetAllWithSpec(spec);
             var productsDto = _Mapper.Map<IEnumerable<ProductDto>>(products);   // list -> list
             return productsDto;
