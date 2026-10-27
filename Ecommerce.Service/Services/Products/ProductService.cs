@@ -2,6 +2,7 @@
 using Ecommerce.Core;
 using Ecommerce.Core.DTOS.ProductsDTOS;
 using Ecommerce.Core.Entities;
+using Ecommerce.Core.Helper;
 using Ecommerce.Core.Services.Contruct;
 using Ecommerce.Core.Specification;
 using Ecommerce.Repository;
@@ -37,13 +38,20 @@ namespace Ecommerce.Service.Services.Products
         }
         // ----------------Specification-------------------
  
-        public async Task<IEnumerable<ProductDto>> GetAllProductSpec(string? sort, int? brandId, int? typeId, int PageIndex ,int PageSize)
+        public async Task<PaginationResponse<ProductDto>> GetAllProductSpec(
+            string? sort, int? brandId, int? typeId, int PageIndex ,int PageSize,string? search
+            )
         {
   
-            var spec = new ProductSpeicfication(sort,brandId,typeId, PageIndex, PageSize);
+            var spec = new ProductSpeicfication(sort,brandId,typeId, PageIndex, PageSize,search);
             var products = await _unitOfWork.Repository<Product, int>().GetAllWithSpec(spec);
             var productsDto = _Mapper.Map<IEnumerable<ProductDto>>(products);   // list -> list
-            return productsDto;
+
+            var countspec = new ProductSpeicfication(brandId, typeId,search);
+            var totalCount = await _unitOfWork.Repository<Product, int>().CountAsync(countspec);
+
+
+            return new PaginationResponse<ProductDto>(PageIndex,PageSize, totalCount, productsDto);
 
         }
 

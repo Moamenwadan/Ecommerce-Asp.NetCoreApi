@@ -42,9 +42,10 @@ namespace Ecommerce.Core.Specification
             Includes.Add(p => p.ProductBrand);
         }
 
-        public ProductSpeicfication(string? sort,int?brandId,int?typeId, int PageIndex, int PageSize) :base(
+        public ProductSpeicfication(string? sort,int?brandId,int?typeId, int PageIndex, int PageSize,string? search) :base(
             p=>
             (!brandId.HasValue || p.BrandId == brandId )&&(!typeId.HasValue || p.ProductTypeId ==typeId)
+            &&(String.IsNullOrEmpty(search) || p.Name.ToLower().Contains(search.ToLower()))
             )
         // p=> p.BrandId == 2 &&  p.ProductTypeId ==3 
         {
@@ -76,6 +77,24 @@ namespace Ecommerce.Core.Specification
             //10 * (3-1) = 20  products.skip(20).take(10) the  10 produts FROM 80 Product
 
         }
+
+
+
+        public ProductSpeicfication( int? brandId, int? typeId,string?search) : base(
+           p =>
+           (!brandId.HasValue || p.BrandId == brandId) && (!typeId.HasValue || p.ProductTypeId == typeId)
+            && (String.IsNullOrEmpty(search) || p.Name.ToLower().Contains(search.ToLower()))
+           )
+        // p=> p.BrandId == 2 &&  p.ProductTypeId ==3 
+        {
+        
+
+        }
+
+
+
+
+
 
     }
 

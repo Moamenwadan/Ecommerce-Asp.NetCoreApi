@@ -1,4 +1,5 @@
 
+using Ecommerce.APIs.Response;
 using Ecommerce.Core;
 using Ecommerce.Core.Mapping;
 using Ecommerce.Core.Services.Contruct;
@@ -9,7 +10,10 @@ using Ecommerce.Service.Services.Brands;
 using Ecommerce.Service.Services.Categories;
 using Ecommerce.Service.Services.Products;
 using Ecommerce.Service.Services.ProductTypes;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client.NativeInterop;
 
 namespace Ecommerce.APIs
 {
@@ -42,6 +46,28 @@ namespace Ecommerce.APIs
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddAutoMapper(M => M.AddProfile(new MappingProfile(builder.Configuration)));
+
+        //    private IActionResult HandleValidationError(ActionContext context)
+        //{
+        //    return new BadRequestObjectResult(
+        //        new ApiValidationRequest(400, "badRequest")
+        //    );
+        //}
+        builder.Services.Configure<ApiBehaviorOptions>(settings =>
+            {
+                //    options.InvalidModelStateResponseFactory = HandleValidationError;
+                settings.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var Errors = context.ModelState.Where(Resp => Resp.Value.Errors.Count() > 0)
+                          .SelectMany(Rs => Rs.Value.Errors).Select(Error => Error.ErrorMessage).ToArray();
+                    var Response = new ApiValidationRequest() { Errors = Errors };
+
+                    return new BadRequestObjectResult(Response);
+
+                };
+
+            });
+
             var app = builder.Build();
             var scope = app.Services.CreateScope();
             var Context = scope.ServiceProvider.GetRequiredService<EcommerceDbContext>();

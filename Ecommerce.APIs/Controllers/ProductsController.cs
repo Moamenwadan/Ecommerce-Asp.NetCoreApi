@@ -42,10 +42,13 @@ namespace Ecommerce.APIs.Controllers
         // -------------------------Spec----------------------------
 
         [HttpGet("All")]
-        public async Task<IActionResult> GetAllProductSpec(string? sort,[FromQuery] int? brandId, [FromQuery] int? typeId, [FromQuery] int PageIndex = 1, [FromQuery] int PageSize = 5)
+        public async Task<IActionResult> GetAllProductSpec(
+            string? sort,[FromQuery] int? brandId, [FromQuery] int? typeId, [FromQuery] string? search, [FromQuery] int PageIndex = 1,
+            [FromQuery] int PageSize = 5
+            )
         {
-            var products = await _productService.GetAllProductSpec(sort,brandId,typeId, PageIndex , PageSize);
-            if (products == null || !products.Any())
+            var products = await _productService.GetAllProductSpec(sort,brandId,typeId, PageIndex , PageSize,search);
+            if (products.Data == null || !products.Data.Any())
                 return NotFound("No products found.");//404 NotFound
             return Ok(products);// 200 OK
         }

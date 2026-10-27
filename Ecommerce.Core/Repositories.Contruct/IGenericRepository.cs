@@ -21,5 +21,8 @@ namespace Ecommerce.Core.Repositories.Contruct
 
         Task<IEnumerable<TEntity>> GetAllWithSpec(ISpecification<TEntity,TKey> spec);
         Task<TEntity> GetWithSpec(ISpecification<TEntity, TKey> spec);
+
+        Task<int> CountAsync(ISpecification<TEntity, TKey> spec);
+
     }
 }

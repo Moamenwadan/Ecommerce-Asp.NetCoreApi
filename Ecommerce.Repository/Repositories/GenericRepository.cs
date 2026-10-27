@@ -138,5 +138,11 @@ return await SpecificationEvaluator<TEntity,TKey>.GetQuery(_context.Set<TEntity>
         {
             return await SpecificationEvaluator<TEntity, TKey>.GetQuery(_context.Set<TEntity>(), spec).FirstOrDefaultAsync();
         }
+        public async Task<int> CountAsync(ISpecification<TEntity, TKey> spec)
+        {
+            return await SpecificationEvaluator<TEntity, TKey>
+                .GetQuery(_context.Set<TEntity>(), spec)
+                .CountAsync();
+        }
     }
 }
